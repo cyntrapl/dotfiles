@@ -148,7 +148,7 @@
 	      "..." = "cd ../..";
 	      nvim  = "nix run /home/cyntrap/Nix-Dots/modules/nixvim/ --";
         big = "cd /run/mount/Big/";
-        home = "/home/cyntrap/";
+        dots = "cd /home/cyntrap/Nix-Dots/";
       };
     };
     steam = {
