@@ -1,8 +1,9 @@
 {
   # Import all your configuration modules here
-  imports = [ 
+  imports = [
     ./bufferline.nix
     ./nixvim.nix
     ./options.nix
+    ./plugins
   ];
 }

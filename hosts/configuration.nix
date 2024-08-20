@@ -190,6 +190,7 @@
      gnome.gnome-software
      gnome.seahorse
      ripgrep
+     gnome.eog
 
 
     #fish plugins
