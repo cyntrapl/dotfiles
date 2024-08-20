@@ -5,5 +5,6 @@
     ./nixvim.nix
     ./options.nix
     ./plugins
+    ./mappings
   ];
 }

@@ -7,6 +7,7 @@
       enable = true;
       sign = false;
     };
+    lightbulb.enable = false; #bugs out for some reason
     outline = {
       layout = "float";
     };
