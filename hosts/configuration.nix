@@ -83,6 +83,8 @@
       autoNumlock = true;
       wayland.enable = true;
     };
+
+    tailscale.enable = true; #used for ssh server without port forwarding(very cool)
   };
 
 
@@ -142,10 +144,11 @@
       set -Ux LSCOLORS gxfxbEaEBxxEhEhBaDaCaD #makes folder colors not ugly
       ";
       shellAliases = {
-      	nix-update = "sudo nixos-rebuild switch --flake ~/Nix-Dots#default";
+      	nix-update = "sudo nixos-rebuild switch --flake /home/cyntrap/Nix-Dots#default";
 	      "..." = "cd ../..";
-	      nvim  = "nix run ~/Nix-Dots/modules/nixvim/ --";
+	      nvim  = "nix run /home/cyntrap/Nix-Dots/modules/nixvim/ --";
         big = "cd /run/mount/Big/";
+        home = "/home/cyntrap/";
       };
     };
     steam = {
