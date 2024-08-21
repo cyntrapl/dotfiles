@@ -1,10 +1,23 @@
 {
   plugins = {
-    lint = {
+    none-ls = {
       enable = true;
-
-      lintersByFt = {
-        nix = ["nix"];
+      enableLspFormat = true;
+      sources = {
+        code_actions = {
+          gitsigns.enable = true;
+          statix.enable = true;
+        };
+        diagnostics = {
+          statix.enable = true;
+          yamllint.enable = true;
+        };
+        formatting = {
+          nixpkgs_fmt.enable = true;
+          black.enable = true;
+          stylua.enable = true;
+          yamlfmt.enable = true;
+        };
       };
     };
 

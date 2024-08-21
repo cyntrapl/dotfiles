@@ -1,5 +1,4 @@
 {
-  colorschemes.dracula.enable = true;
   plugins = {
     neocord.enable = true;
     nvim-autopairs = {

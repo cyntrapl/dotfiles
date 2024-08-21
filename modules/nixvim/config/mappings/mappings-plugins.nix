@@ -1,20 +1,19 @@
 {
   keymaps = [
-    {
-      key = "<C-n>";
-      action = "<CMD>NvimTreeToggle<CR>";
-      options.desc = "Toggle NvimTree";
-    }
-    {
-      key = "<leader>c";
-      action = "+context";
-    }
-    {
-      key = "<leader>co";
-      action = "<CMD>TSContextToggle<CR>";
-      options.desc = "Toggle Treesitter context";
-    }
 
+    #format code
+    {
+      mode = [
+        "n"
+        "v"
+      ];
+      key = "<leader>cfm";
+      action = "<cmd>lua vim.lsp.buf.format()<cr>";
+      options = {
+        silent = true;
+        desc = "Format";
+      };
+    }
     #copilot chat
     {
       key = "<leader>co";
