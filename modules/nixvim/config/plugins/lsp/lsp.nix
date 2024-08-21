@@ -18,6 +18,8 @@
     };
   };
 
-  plugins.lsp-format.enable = true;
-  plugins.inc-rename.enable = true;
+  plugins = {
+    lsp-format.enable = true;
+    inc-rename.enable = true;
+  };
 }

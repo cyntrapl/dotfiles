@@ -1,24 +1,25 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, config, pkgs, ... }:
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-      inputs.aagl.nixosModules.default
-    ];
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+    inputs.aagl.nixosModules.default
+  ];
   #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
   boot.loader.grub.useOSProber = true;
   boot.loader.grub.efiSupport = true;
-
 
   programs.nix-ld.enable = true;
 
@@ -57,8 +58,8 @@
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
+      fcitx5-mozc
+      fcitx5-gtk
     ];
   };
 
@@ -87,7 +88,6 @@
     tailscale.enable = true; #used for ssh server without port forwarding(very cool)
   };
 
-
   programs.file-roller.enable = true;
   programs.xfconf.enable = true;
 
@@ -112,22 +112,22 @@
   users.users.cyntrap = {
     isNormalUser = true;
     description = "Cyntrap";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.fish;
   };
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   home-manager = {
-     extraSpecialArgs = { inherit inputs; };
-     users = {
+    extraSpecialArgs = {inherit inputs;};
+    users = {
       "cyntrap" = import ./home.nix;
-     };
+    };
   };
 
   programs = {
@@ -144,9 +144,9 @@
       set -Ux LSCOLORS gxfxbEaEBxxEhEhBaDaCaD #makes folder colors not ugly
       ";
       shellAliases = {
-      	nix-update = "sudo nixos-rebuild switch --flake /home/cyntrap/Nix-Dots#default";
-	      "..." = "cd ../..";
-	      nvim  = "nix run /home/cyntrap/Nix-Dots/modules/nixvim/ --";
+        nix-update = "sudo nixos-rebuild switch --flake /home/cyntrap/Nix-Dots#default";
+        "..." = "cd ../..";
+        nvim = "nix run /home/cyntrap/Nix-Dots/modules/nixvim/ --";
         big = "cd /run/mount/Big/";
         dots = "cd /home/cyntrap/Nix-Dots/";
       };
@@ -156,42 +156,41 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-  }; 
+  };
 
   services.flatpak.enable = true;
 
   environment.systemPackages = with pkgs; [
-     neofetch
-     swww
-     waypaper
-     dunst
-     libnotify
-     coreutils
-     cliphist
-     wl-clipboard
-     cmake
-     curl
-     rsync
-     wget
-     ffmpegthumbnailer
-     ffmpeg
-     swappy
-     grim
-     slurp
-     ueberzug
-     graphicsmagick
-     ghostscript
-     zsh
-     kanji-stroke-order-font
-     pipewire
-     grimblast
-     pypy3
-     gnome.gnome-disk-utility
-     gnome.gnome-software
-     gnome.seahorse
-     ripgrep
-     gnome.eog
-
+    neofetch
+    swww
+    waypaper
+    dunst
+    libnotify
+    coreutils
+    cliphist
+    wl-clipboard
+    cmake
+    curl
+    rsync
+    wget
+    ffmpegthumbnailer
+    ffmpeg
+    swappy
+    grim
+    slurp
+    ueberzug
+    graphicsmagick
+    ghostscript
+    zsh
+    kanji-stroke-order-font
+    pipewire
+    grimblast
+    pypy3
+    gnome.gnome-disk-utility
+    gnome.gnome-software
+    gnome.seahorse
+    ripgrep
+    gnome.eog
 
     #fish plugins
     fishPlugins.done

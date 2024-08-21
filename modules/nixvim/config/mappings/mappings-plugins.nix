@@ -1,5 +1,4 @@
 {
-  globals.mapleader = " ";
   keymaps = [
     {
       key = "<C-n>";

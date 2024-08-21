@@ -1,14 +1,15 @@
-{ inputs, config, pkgs, ... }:
-
 {
-
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   home.username = "cyntrap";
-  home.homeDirectory = "/home/cyntrap";   
-  
+  home.homeDirectory = "/home/cyntrap";
+
   imports = [
     ../modules/terminal/kitty.nix
     ../modules/launcher/fuzzel.nix
-    #../modules/editor/neovim.nix
     ../modules/hyprland/hyprland.nix
     ../modules/explorer/lf.nix
     ../modules/explorer/bat.nix
@@ -16,11 +17,10 @@
     ../modules/widgets/ags.nix
     ../modules/spicetify/spicetify.nix
     ../modules/video/mpv.nix
-    ]; 
+  ];
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    
     #general
     brave
     sublime
@@ -43,9 +43,8 @@
     clonehero
 
     #weeb
-    #miru  # isnt working lmao 
+    #miru  # isnt working lmao
     memento
-    
 
     #audio and video
     easyeffects
@@ -61,12 +60,12 @@
     jetbrains-toolbox
     sublime
     unityhub
-    temurin-jre-bin-17 
+    temurin-jre-bin-17
     dotnet-runtime
 
     (wineWowPackages.full.override {
-     wineRelease = "staging";
-     mingwSupport = true;
+      wineRelease = "staging";
+      mingwSupport = true;
     })
     winetricks
   ];
@@ -74,12 +73,12 @@
   programs.lazygit.enable = true;
   programs.git = {
     enable = true;
-    userName  = "Cyntrap";
+    userName = "Cyntrap";
     userEmail = "cyntrapg@gmail.com";
     extraConfig = {
       credential.helper = "${
-          pkgs.git.override { withLibsecret = true; }
-        }/bin/git-credential-libsecret";
+        pkgs.git.override {withLibsecret = true;}
+      }/bin/git-credential-libsecret";
       init.defaultBranch = "main";
     };
   };
@@ -99,6 +98,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    TERMINAL = "kitty";
   };
 
   nixpkgs.config.allowUnfree = true;

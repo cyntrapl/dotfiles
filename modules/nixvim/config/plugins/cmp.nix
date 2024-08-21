@@ -1,15 +1,17 @@
 {
- plugins = {
+  plugins = {
     cmp = {
       enable = true;
 
       settings = {
         sources = [
-          {name = "nvim-lsp";}
-          {name = "clangd";}
-          {name = "buffer";}
-          {name = "path";}
-          {name = "fish";}
+          { name = "nvim-lsp"; }
+          { name = "emoji"; }
+          #{ name = "copilot"; }
+          { name = "clangd"; }
+          { name = "buffer"; }
+          { name = "path"; }
+          { name = "fish"; }
         ];
 
         mapping = {
@@ -78,7 +80,8 @@
       enable = true;
       extraConfig = {
         enable_autosnippets = true;
+        store_selection_keys = "<Tab>";
       };
-    }; 
- };
+    };
+  };
 }

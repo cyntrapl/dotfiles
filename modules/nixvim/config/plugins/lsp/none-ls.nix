@@ -1,35 +1,71 @@
 {
-  plugins.none-ls = {
-    enable = true;
+  plugins = {
+    lint = {
+      enable = true;
 
-    sources = {
-      code_actions = {
-        statix.enable = true;
+      lintersByFt = {
+        nix = ["nix"];
       };
+    };
 
-      diagnostics = {
-        fish.enable = true;
-        deadnix.enable = true;
-        trail_space.enable = true;
-        write_good.enable = true;
-        codespell.enable = true;
-        pylint.enable = true;
-        mypy.enable = true;
-        statix.enable = true;
-        stylelint.enable = true;
-        sqlfluff.enable = true;
-        dotenv_linter.enable = true;
-        markdownlint.enable = true;
+    conform-nvim = {
+      enable = true;
+      formatOnSave = {
+        lspFallback = true;
+        timeoutMs = 500;
       };
-
-      formatting = {
-        alejandra.enable = true; # nix
-        shfmt.enable = true;
-        black.enable = true;
-        isort.enable = true;
-        prettier.enable = true;
-        prettier.disableTsServerFormatter = true;
-        typstfmt.enable = true;
+      notifyOnError = true;
+      formattersByFt = {
+        liquidsoap = [ "liquidsoap-prettier" ];
+        html = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        css = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        javascript = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        javascriptreact = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        typescript = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        typescriptreact = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        python = [ "black" ];
+        lua = [ "stylua" ];
+        nix = [ "nixfmt" ];
+        markdown = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        yaml = [
+          "yamllint"
+          "yamlfmt"
+        ];
       };
     };
   };
