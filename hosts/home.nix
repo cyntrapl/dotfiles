@@ -1,8 +1,7 @@
-{
-  inputs,
-  config,
-  pkgs,
-  ...
+{ inputs
+, config
+, pkgs
+, ...
 }: {
   home.username = "cyntrap";
   home.homeDirectory = "/home/cyntrap";
@@ -33,7 +32,16 @@
     (vesktop.override {
       withSystemVencord = false;
     })
-    git-credential-manager
+    wlr-randr
+    cmake
+    sutils
+    wireshark
+    anydesk
+    bluez
+    obsidian
+    brightnessctl
+    powertop
+    auto-cpufreq
 
     #gaming
     heroic
@@ -43,8 +51,12 @@
     clonehero
 
     #weeb
-    #miru  # isnt working lmao
+    anup
     memento
+    adl
+    ani-cli
+    animdl
+    trackma
 
     #audio and video
     easyeffects
@@ -68,6 +80,7 @@
       mingwSupport = true;
     })
     winetricks
+
   ];
 
   programs.lazygit.enable = true;
@@ -76,9 +89,6 @@
     userName = "Cyntrap";
     userEmail = "cyntrapg@gmail.com";
     extraConfig = {
-      credential.helper = "${
-        pkgs.git.override {withLibsecret = true;}
-      }/bin/git-credential-libsecret";
       init.defaultBranch = "main";
     };
   };
@@ -99,6 +109,8 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "kitty";
+    SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
+    SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
   };
 
   nixpkgs.config.allowUnfree = true;

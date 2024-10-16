@@ -1,11 +1,10 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  inputs,
-  config,
-  pkgs,
-  ...
+{ inputs
+, config
+, pkgs
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -14,7 +13,7 @@
   ];
   #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = ["ntfs"];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
@@ -76,6 +75,7 @@
         variant = "us";
         layout = "";
       };
+      windowManager.dwm.enable = true;
     };
 
     libinput.enable = true;
@@ -85,7 +85,15 @@
       wayland.enable = true;
     };
 
+    auto-cpufreq.enable = true;
+
+    usbmuxd.enable = true;
+
     tailscale.enable = true; #used for ssh server without port forwarding(very cool)
+
+    fprintd.enable = true;
+    fprintd.tod.enable = true;
+    fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090;
   };
 
   programs.file-roller.enable = true;
@@ -112,19 +120,19 @@
   users.users.cyntrap = {
     isNormalUser = true;
     description = "Cyntrap";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
   };
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "cyntrap" = import ./home.nix;
     };
@@ -156,11 +164,16 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
+    ssh = {
+      enableAskPassword = true;
+      askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
+    };
   };
 
   services.flatpak.enable = true;
 
   environment.systemPackages = with pkgs; [
+    jetbrains.clion
     neofetch
     swww
     waypaper
@@ -191,13 +204,23 @@
     gnome.seahorse
     ripgrep
     gnome.eog
+    libimobiledevice
+    libsecret
+    arandr
+    tlp
 
     #fish plugins
     fishPlugins.done
+
+    #dwm
+    dmenu
+
+    #weird bug fix
+    lxqt.lxqt-openssh-askpass
   ];
 
   #programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
-  programs.anime-games-launcher.enable = true;
+  #programs.anime-games-launcher.enable = true;
   #programs.anime-borb-launcher.enable = true;
   #programs.honkers-railway-launcher.enable = true;
   #programs.honkers-launcher.enable = true;

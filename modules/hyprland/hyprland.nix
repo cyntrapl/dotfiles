@@ -17,8 +17,8 @@
 
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
-monitor=DP-3, 1920x1080@165, 0x0, 1
-monitor=HDMI-A-1,preferred,0x1080,1
+monitor = eDP-1,preferred, auto, 1
+monitor = , preferred, auto, 1, mirror, eDP-1
 
 exec-once = wl-paste --type text --watch cliphist store
 exec-once = wl-paste --type image --watch cliphist store
@@ -73,14 +73,14 @@ decoration {
     rounding = 10
 
     blur {
-        enabled = true
+        enabled = false
         size = 3
         passes = 1
         
         vibrancy = 0.1696
     }
 
-    drop_shadow = true
+    drop_shadow = false
     shadow_range = 4
     shadow_render_power = 3
     col.shadow = rgba(1a1a1aee)
@@ -96,7 +96,7 @@ animations {
     animation = windows, 1, 7, myBezier
     animation = windowsOut, 1, 7, default, popin 80%
     animation = border, 1, 10, default
-    animation = borderangle, 1, 8, default
+    #animation = borderangle, 1, 8, default
     animation = fade, 1, 7, default
     animation = workspaces, 1, 6, default
 }
@@ -119,7 +119,8 @@ gestures {
 
 misc {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    force_default_wallpaper = -1 # Set to 0 or 1 to disable the anime mascot wallpapers
+    force_default_wallpaper = 1 # Set to 0 or 1 to disable the anime mascot wallpapers
+    vfr = true
 }
 
 # Example per-device config
